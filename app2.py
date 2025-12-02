@@ -9,11 +9,6 @@ from collections import Counter, defaultdict
 import subprocess
 import sys
 
-# ------------------------------------------------------
-# Load spaCy only once
-# ------------------------------------------------------
-nlp = spacy.load("en_core_web_sm")
-
 st.set_page_config(page_title="Concept Frequency", layout="wide")
 st.title("Concept Frequency Dashboard")
 
@@ -397,3 +392,4 @@ with tab2:
             file_name="url_treemap.html",
             mime="text/html"
         )
+
