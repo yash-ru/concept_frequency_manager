@@ -184,7 +184,7 @@ def extract_keyword_concepts(df):
             "concept": c["phrase"],
             "concept_count": c["count"],
             "matched_keywords_count": len(kws),
-            "exposure_pct": round((imp_sum / total_impr) * 100, 2) if total_impr else 0,
+            "frequency_pct": round((imp_sum / total_impr) * 100, 2) if total_impr else 0,
             "rpc": round(rev_sum / clicks_sum, 2) if clicks_sum else 0,
             "ctr": round((clicks_sum / imp_sum) * 100, 2) if imp_sum else 0,
             "matched_keywords": "; ".join(kws)
@@ -201,7 +201,7 @@ def create_keyword_treemap(df):
     fig = px.treemap(
         df,
         path=["concept"],
-        values="exposure_pct",
+        values="frequency_pct",
         color="ctr_norm",
         color_continuous_scale=["#FF6B6B", "#FFA94D", "#FFD43B", "#82C91E", "#2F9E44"],
         maxdepth=1,
@@ -339,7 +339,7 @@ def extract_url_concepts(df):
             "concept": c["phrase"],
             "concept_count": c["count"],
             "matched_url_count": len(urls),
-            "exposure_pct": round((imp_sum / total_impr) * 100, 2) if total_impr else 0,
+            "frequency_pct": round((imp_sum / total_impr) * 100, 2) if total_impr else 0,
             "rpc": round(rev_sum / clicks_sum, 2) if clicks_sum else 0,
             "ctr": round((clicks_sum / imp_sum) * 100, 2) if imp_sum else 0,
             "matched_urls": "; ".join(urls)
@@ -356,7 +356,7 @@ def create_url_treemap(df):
     fig = px.treemap(
         df,
         path=["concept"],
-        values="exposure_pct",
+        values="frequency_pct",
         color="ctr_norm",
         color_continuous_scale=["#FF6B6B", "#FFA94D", "#FFD43B", "#82C91E", "#2F9E44"],
         maxdepth=1,
@@ -379,7 +379,7 @@ tab1, tab2 = st.tabs(["Keyword Concept", "URL Concept"])
 # ------------------------------------------------------
 with tab1:
 
-    st.markdown("🔗 **Sample Analytics link:** [Click here](https://cm.analytics.mn/reports/analyse?hash=b32ba06d7f2a4ba67a2f5b1db847519c)")
+    st.markdown("🔗 [Sample Analytics link](https://cm.analytics.mn/reports/analyse?hash=b32ba06d7f2a4ba67a2f5b1db847519c)")
     
     uploaded = st.file_uploader(
         "Upload Keyword CSV (Required columns: Keyword Term, Keyword Impressions, Keyword Clicks, Revenue)",
@@ -445,7 +445,7 @@ with tab1:
 # ------------------------------------------------------
 with tab2:
 
-    st.markdown("🔗 **Sample Analytics link:** [Click here](https://cm.analytics.mn/reports/analyse?hash=749ac6e6705bdc0ff2d4e4c64ea83bdd)")
+    st.markdown("🔗 [Sample Analytics link](https://cm.analytics.mn/reports/analyse?hash=749ac6e6705bdc0ff2d4e4c64ea83bdd)")
     
     uploaded2 = st.file_uploader(
         "Upload URL CSV (Required columns: URL, Page Impression, Keyword Clicks, Revenue)",
