@@ -371,7 +371,7 @@ def create_url_treemap(df):
 # ------------------------------------------------------
 #                   STREAMLIT TABS
 # ------------------------------------------------------
-tab1, tab2 = st.tabs(["📊 Keyword Concept", "🔗 URL Concept"])
+tab1, tab2 = st.tabs(["Keyword Concept", "URL Concept"])
 
 
 # ------------------------------------------------------
@@ -400,7 +400,7 @@ with tab1:
             else:
                 st.success(f"✅ Loaded {len(df):,} keywords")
 
-                with st.spinner("🔄 Extracting keyword concepts... This may take a minute for large datasets"):
+                with st.spinner("Extracting keyword concepts... This may take a minute for large datasets"):
                     kw_concepts = extract_keyword_concepts(df)
 
                 
