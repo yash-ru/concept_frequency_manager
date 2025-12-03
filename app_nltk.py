@@ -415,10 +415,7 @@ with tab1:
                         height=400
                     )
                 
-                with col2:
-                    st.metric("Total Concepts", len(kw_concepts))
-                    st.metric("Total Keywords", len(df))
-                    
+                with col2:                   
                     st.download_button(
                         "📥 Download Full Results CSV",
                         kw_concepts.to_csv(index=False),
@@ -485,8 +482,6 @@ with tab2:
                     )
                 
                 with col2:
-                    st.metric("Total Concepts", len(url_concepts))
-                    st.metric("Total URLs", len(df2))
                     
                     st.download_button(
                         "📥 Download Full Results CSV",
