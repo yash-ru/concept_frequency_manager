@@ -482,7 +482,7 @@ with tab2:
                 st.download_button(
                     "📥 Download Full Results CSV",
                     url_concepts.to_csv(index=False),
-                    url_concepts.csv",
+                    "url_concepts.csv",
                     mime="text/csv",
                     use_container_width=True
                 )
