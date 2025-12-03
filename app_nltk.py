@@ -403,7 +403,6 @@ with tab1:
                 with st.spinner("🔄 Extracting keyword concepts... This may take a minute for large datasets"):
                     kw_concepts = extract_keyword_concepts(df)
 
-                st.success(f"✅ Found {len(kw_concepts)} unique concepts!")
                 
                 col1, col2 = st.columns([3, 1])
                 
@@ -468,8 +467,6 @@ with tab2:
 
                 with st.spinner("🔄 Extracting URL concepts... This may take a minute for large datasets"):
                     url_concepts = extract_url_concepts(df2)
-
-                st.success(f"✅ Found {len(url_concepts)} unique concepts!")
                 
                 col1, col2 = st.columns([3, 1])
                 
