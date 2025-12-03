@@ -207,7 +207,7 @@ def create_keyword_treemap(df):
         maxdepth=1,
         title="Keyword Concept Distribution",
         width=1400, 
-        height=900  
+        height=500  
     )
     fig.update_traces(textinfo="label+value+percent parent")
     return fig
@@ -362,7 +362,7 @@ def create_url_treemap(df):
         maxdepth=1,
         title="URL Concept Distribution",
         width=1400, 
-        height=900  
+        height=500  
     )
     fig.update_traces(textinfo="label+value+percent parent")
     return fig
