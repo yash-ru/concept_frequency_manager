@@ -205,7 +205,7 @@ def create_keyword_treemap(df):
         color="ctr_norm",
         color_continuous_scale=["#FF6B6B", "#FFA94D", "#FFD43B", "#82C91E", "#2F9E44"],
         maxdepth=1,
-        title=" ## Keyword Concept Distribution",
+        title="Keyword Concept Distribution",
         width=1400, 
         height=600  
     )
@@ -360,7 +360,7 @@ def create_url_treemap(df):
         color="ctr_norm",
         color_continuous_scale=["#FF6B6B", "#FFA94D", "#FFD43B", "#82C91E", "#2F9E44"],
         maxdepth=1,
-        title=" ## URL Concept Distribution",
+        title="URL Concept Distribution",
         width=1400, 
         height=600  
     )
@@ -414,14 +414,14 @@ with tab1:
                         height=400
                     )
                 
-                with col2:                   
-                    st.download_button(
-                        "📥 Download Full Results CSV",
-                        kw_concepts.to_csv(index=False),
-                        "keyword_concepts.csv",
-                        mime="text/csv",
-                        use_container_width=True
-                    )
+                #with col2:                   
+                st.download_button(
+                    "📥 Download Full Results CSV",
+                    kw_concepts.to_csv(index=False),
+                    "keyword_concepts.csv",
+                    mime="text/csv",
+                    use_container_width=True
+                    #)
 
                 fig = create_keyword_treemap(kw_concepts)
                 st.plotly_chart(fig, use_container_width=True)
