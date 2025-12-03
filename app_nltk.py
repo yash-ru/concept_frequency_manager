@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
 import re
 from urllib.parse import urlparse
 from collections import Counter, defaultdict
@@ -199,43 +198,16 @@ def create_keyword_treemap(df):
     else:
         df["ctr_norm"] = (df["ctr"] - df["ctr"].min()) / (df["ctr"].max() - df["ctr"].min())
 
-    # Truncate keywords for hover text (first 10 keywords)
-    df["keywords_preview"] = df["matched_keywords"].apply(
-        lambda x: "; ".join(x.split("; ")[:10]) + ("..." if len(x.split("; ")) > 10 else "")
-    )
-    
-    # Create custom hover template
-    hover_template = (
-        "<b>%{label}</b><br>"
-        "Exposure: %{value:.2f}%<br>"
-        "CTR: %{customdata[0]:.2f}%<br>"
-        "RPC: $%{customdata[1]:.2f}<br>"
-        "Keyword Count: %{customdata[2]}<br>"
-        "<br><b>Sample Keywords:</b><br>%{customdata[3]}"
-        "<extra></extra>"
-    )
-
     fig = px.treemap(
         df,
         path=["concept"],
         values="exposure_pct",
         color="ctr_norm",
         color_continuous_scale=["#FF6B6B", "#FFA94D", "#FFD43B", "#82C91E", "#2F9E44"],
-        custom_data=["ctr", "rpc", "matched_keywords_count", "keywords_preview"],
-        title="Keyword Concept Distribution (Click to Zoom)"
+        maxdepth=1,
+        title="Keyword Concept Distribution"
     )
-    
-    fig.update_traces(
-        textinfo="label+value+percent parent",
-        hovertemplate=hover_template
-    )
-    
-    # Enable click-to-zoom
-    fig.update_layout(
-        clickmode='event+select',
-        height=700
-    )
-    
+    fig.update_traces(textinfo="label+value+percent parent")
     return fig
 
 
@@ -379,43 +351,16 @@ def create_url_treemap(df):
     else:
         df["ctr_norm"] = (df["ctr"] - df["ctr"].min()) / (df["ctr"].max() - df["ctr"].min())
 
-    # Truncate URLs for hover text (first 10 URLs)
-    df["urls_preview"] = df["matched_urls"].apply(
-        lambda x: "; ".join(x.split("; ")[:10]) + ("..." if len(x.split("; ")) > 10 else "")
-    )
-    
-    # Create custom hover template
-    hover_template = (
-        "<b>%{label}</b><br>"
-        "Exposure: %{value:.2f}%<br>"
-        "CTR: %{customdata[0]:.2f}%<br>"
-        "RPC: $%{customdata[1]:.2f}<br>"
-        "URL Count: %{customdata[2]}<br>"
-        "<br><b>Sample URLs:</b><br>%{customdata[3]}"
-        "<extra></extra>"
-    )
-
     fig = px.treemap(
         df,
         path=["concept"],
         values="exposure_pct",
         color="ctr_norm",
         color_continuous_scale=["#FF6B6B", "#FFA94D", "#FFD43B", "#82C91E", "#2F9E44"],
-        custom_data=["ctr", "rpc", "matched_url_count", "urls_preview"],
-        title="URL Concept Distribution (Click to Zoom)"
+        maxdepth=1,
+        title="URL Concept Distribution"
     )
-    
-    fig.update_traces(
-        textinfo="label+value+percent parent",
-        hovertemplate=hover_template
-    )
-    
-    # Enable click-to-zoom
-    fig.update_layout(
-        clickmode='event+select',
-        height=700
-    )
-    
+    fig.update_traces(textinfo="label+value+percent parent")
     return fig
 
 
@@ -480,32 +425,8 @@ with tab1:
                     )
 
                 st.write("### 🗺️ Interactive Treemap Visualization")
-                st.info("💡 **Tip:** Click on any tile to zoom in. Click the home icon (🏠) in the toolbar to reset.")
-                
                 fig = create_keyword_treemap(kw_concepts)
-                event = st.plotly_chart(fig, use_container_width=True, on_select="rerun")
-
-                # Show detailed view when a concept is selected
-                if event and event.selection and event.selection.points:
-                    selected_concept = event.selection.points[0].get("label")
-                    if selected_concept:
-                        with st.expander(f"📋 Full Keyword List for: **{selected_concept}**", expanded=True):
-                            concept_row = kw_concepts[kw_concepts["concept"] == selected_concept]
-                            if not concept_row.empty:
-                                all_keywords = concept_row.iloc[0]["matched_keywords"].split("; ")
-                                st.write(f"**Total Keywords:** {len(all_keywords)}")
-                                
-                                # Display in a nice format
-                                keywords_df = pd.DataFrame({"Keywords": all_keywords})
-                                st.dataframe(keywords_df, use_container_width=True, height=400)
-                                
-                                # Download button for this concept's keywords
-                                st.download_button(
-                                    f"📥 Download Keywords for '{selected_concept}'",
-                                    "\n".join(all_keywords),
-                                    f"{selected_concept}_keywords.txt",
-                                    mime="text/plain"
-                                )
+                st.plotly_chart(fig, use_container_width=True)
 
                 st.download_button(
                     "📥 Download Treemap HTML",
@@ -574,32 +495,8 @@ with tab2:
                     )
 
                 st.write("### 🗺️ Interactive Treemap Visualization")
-                st.info("💡 **Tip:** Click on any tile to zoom in. Click the home icon (🏠) in the toolbar to reset.")
-                
                 fig2 = create_url_treemap(url_concepts)
-                event2 = st.plotly_chart(fig2, use_container_width=True, on_select="rerun")
-
-                # Show detailed view when a concept is selected
-                if event2 and event2.selection and event2.selection.points:
-                    selected_concept = event2.selection.points[0].get("label")
-                    if selected_concept:
-                        with st.expander(f"📋 Full URL List for: **{selected_concept}**", expanded=True):
-                            concept_row = url_concepts[url_concepts["concept"] == selected_concept]
-                            if not concept_row.empty:
-                                all_urls = concept_row.iloc[0]["matched_urls"].split("; ")
-                                st.write(f"**Total URLs:** {len(all_urls)}")
-                                
-                                # Display in a nice format
-                                urls_df = pd.DataFrame({"URLs": all_urls})
-                                st.dataframe(urls_df, use_container_width=True, height=400)
-                                
-                                # Download button for this concept's URLs
-                                st.download_button(
-                                    f"📥 Download URLs for '{selected_concept}'",
-                                    "\n".join(all_urls),
-                                    f"{selected_concept}_urls.txt",
-                                    mime="text/plain"
-                                )
+                st.plotly_chart(fig2, use_container_width=True)
 
                 st.download_button(
                     "📥 Download Treemap HTML",
