@@ -378,6 +378,8 @@ tab1, tab2 = st.tabs(["Keyword Concept", "URL Concept"])
 # TAB 1 — KEYWORD ENGINE
 # ------------------------------------------------------
 with tab1:
+
+     st.markdown("🔗 **Sample Analytics link:** [Click here](https://cm.analytics.mn/reports/analyse?hash=b32ba06d7f2a4ba67a2f5b1db847519c)")
     
     uploaded = st.file_uploader(
         "Upload Keyword CSV (Required columns: Keyword Term, Keyword Impressions, Keyword Clicks, Revenue)",
@@ -442,6 +444,8 @@ with tab1:
 # TAB 2 — URL ENGINE
 # ------------------------------------------------------
 with tab2:
+
+    st.markdown("🔗 **Sample Analytics link:** [Click here](https://cm.analytics.mn/reports/analyse?hash=749ac6e6705bdc0ff2d4e4c64ea83bdd)")
     
     uploaded2 = st.file_uploader(
         "Upload URL CSV (Required columns: URL, Page Impression, Keyword Clicks, Revenue)",
