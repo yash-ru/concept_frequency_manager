@@ -1,7 +1,7 @@
 import streamlit as st
 import datetime
 
-COMPANY_DOMAIN = "company.com"
+COMPANY_DOMAIN = "media.net"
 
 
 def ensure_user():
@@ -52,10 +52,10 @@ def ensure_user():
             </div>
         """, unsafe_allow_html=True)
 
-        email = st.text_input(" ", placeholder=f"name@{media.net}")
+        email = st.text_input(" ", placeholder=f"name@{COMPANY_DOMAIN}")
 
         if email:
-            if email.endswith(f"@{media.net}"):
+            if email.endswith(f"@{COMPANY_DOMAIN}"):
                 st.session_state.user_email = email
 
                 # Remember in browser
@@ -63,7 +63,7 @@ def ensure_user():
 
                 st.rerun()
             else:
-                st.error(f"Please enter a valid @{media.net} email")
+                st.error(f"Please enter a valid @{COMPANY_DOMAIN} email")
 
         st.stop()
 
