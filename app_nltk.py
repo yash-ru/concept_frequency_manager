@@ -378,7 +378,6 @@ tab1, tab2 = st.tabs(["📊 Keyword Concept", "🔗 URL Concept"])
 # TAB 1 — KEYWORD ENGINE
 # ------------------------------------------------------
 with tab1:
-    st.markdown("### Upload your keyword data to extract meaningful concepts")
     
     uploaded = st.file_uploader(
         "Upload Keyword CSV (Required columns: Keyword Term, Keyword Impressions, Keyword Clicks, Revenue)",
@@ -448,7 +447,6 @@ with tab1:
 # TAB 2 — URL ENGINE
 # ------------------------------------------------------
 with tab2:
-    st.markdown("### Upload your URL data to extract page concepts")
     
     uploaded2 = st.file_uploader(
         "Upload URL CSV (Required columns: URL, Page Impression, Keyword Clicks, Revenue)",
