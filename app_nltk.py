@@ -206,6 +206,8 @@ def create_keyword_treemap(df):
         color_continuous_scale=["#FF6B6B", "#FFA94D", "#FFD43B", "#82C91E", "#2F9E44"],
         maxdepth=1,
         title="Keyword Concept Distribution"
+        width=1400, 
+        height=900  
     )
     fig.update_traces(textinfo="label+value+percent parent")
     return fig
