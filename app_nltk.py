@@ -406,13 +406,13 @@ with tab1:
                 
                 col1, col2 = st.columns([3, 1])
                 
-                with col1:
-                    st.write("### 📊 Concept Analysis Results")
-                    st.dataframe(
-                        kw_concepts.head(50),
-                        use_container_width=True,
-                        height=400
-                    )
+                #with col1:
+                st.write("### 📊 Concept Analysis Results")
+                st.dataframe(
+                    kw_concepts.head(50),
+                    use_container_width=True,
+                    height=400
+                )
                 
                 #with col2:                   
                 st.download_button(
@@ -469,23 +469,23 @@ with tab2:
                 
                 col1, col2 = st.columns([3, 1])
                 
-                with col1:
-                    st.write("### 📊 Concept Analysis Results")
-                    st.dataframe(
-                        url_concepts.head(50),
-                        use_container_width=True,
-                        height=400
-                    )
+                #with col1:
+                st.write("### 📊 Concept Analysis Results")
+                st.dataframe(
+                    url_concepts.head(50),
+                    use_container_width=True,
+                    height=400
+                )
                 
-                with col2:
+                #with col2:
                     
-                    st.download_button(
-                        "📥 Download Full Results CSV",
-                        url_concepts.to_csv(index=False),
-                        "url_concepts.csv",
-                        mime="text/csv",
-                        use_container_width=True
-                    )
+                st.download_button(
+                    "📥 Download Full Results CSV",
+                    url_concepts.to_csv(index=False),
+                    url_concepts.csv",
+                    mime="text/csv",
+                    use_container_width=True
+                )
 
                 fig2 = create_url_treemap(url_concepts)
                 st.plotly_chart(fig2, use_container_width=True)
