@@ -7,8 +7,16 @@ from collections import Counter, defaultdict
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+from auth import ensure_user
 
 st.set_page_config(page_title="Concept Frequency", layout="wide")
+
+# Get user email
+user_email = ensure_user()
+
+# Continue with your real app
+st.title("My Internal App")
+st.write(f"Welcome, {user_email}")
 
 # ------------------------------------------------------
 # Download NLTK data (only once, cached)
