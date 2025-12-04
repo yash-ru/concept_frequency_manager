@@ -385,7 +385,7 @@ def create_url_treemap(df):
                      "<br>CTR: %{customdata[0]:.2f}"
                      "<br>RPC: %{customdata[1]:.2f}",
         textinfo="none",
-        hoverinfo="skip"
+        hovertemplate=""
     )
     return fig
 
