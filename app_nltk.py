@@ -222,7 +222,8 @@ def create_keyword_treemap(df):
         texttemplate="%{label}<br><br>exposure: %{value}"
                      "<br>CTR: %{customdata[0]:.2f}"
                      "<br>RPC: %{customdata[1]:.2f}",
-        textinfo="none"   # prevent default Plotly text
+        textinfo="none",
+        hoverinfo="skip"
     )
     return fig
 
@@ -383,7 +384,8 @@ def create_url_treemap(df):
         texttemplate="%{label}<br><br>exposure: %{value}"
                      "<br>CTR: %{customdata[0]:.2f}"
                      "<br>RPC: %{customdata[1]:.2f}",
-        textinfo="none"   # prevent default Plotly text
+        textinfo="none",
+        hoverinfo="skip"
     )
     return fig
 
