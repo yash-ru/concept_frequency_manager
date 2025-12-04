@@ -215,9 +215,15 @@ def create_keyword_treemap(df):
         maxdepth=1,
         title="Keyword Concept Distribution",
         width=1400, 
-        height=600  
+        height=600,
+        custom_data=["ctr", "rpc"] 
     )
-    fig.update_traces(textinfo="label+value+percent parent")
+    fig.update_traces(
+        texttemplate="%{label}<br><br>exposure: %{value}"
+                     "<br>CTR: %{customdata[0]:.2f}"
+                     "<br>RPC: %{customdata[1]:.2f}",
+        textinfo="none"   # prevent default Plotly text
+    )
     return fig
 
 
