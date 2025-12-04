@@ -453,7 +453,7 @@ with tab1:
 # ------------------------------------------------------
 with tab2:
 
-    st.markdown("🔗 [Sample Analytics link](https://cm.analytics.mn/reports/analyse?hash=749ac6e6705bdc0ff2d4e4c64ea83bdd)")
+    st.markdown("🔗 [Sample Analytics link](https://cm.analytics.mn/reports/analyse?hash=cef9337594ac3085d7823287eeaf084c)")
     
     uploaded2 = st.file_uploader(
         "Upload URL CSV (Required columns: URL, Page Impression, Keyword Clicks, Revenue)",
