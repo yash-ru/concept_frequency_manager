@@ -375,6 +375,7 @@ def create_url_treemap(df):
     )
     fig.update_traces(
         texttemplate="%{label}<br>exposure: %{value}"
+                     "<br>"   
                      "<br>CTR: %{customdata[0]:.2f}"
                      "<br>RPC: %{customdata[1]:.2f}",
         textinfo="none"   # prevent default Plotly text
