@@ -400,8 +400,9 @@ with tab1:
         try:
             df = pd.read_csv(uploaded)
 
+            first_col = df.columns[0]
             # Remove row 2 if contains "Grand Total"
-            df = df[~df[first_col].astype(str).str.contains("grand total", case=False, na=False)]
+            df = df[~df[first_col].astype(str).str.contains("Grand Total", case=False, na=False)]
 
             # Remove last row if it contains "(Others)"
             df = df[~df[first_col].astype(str).str.contains(r"\(others\)", case=False, na=False)]
