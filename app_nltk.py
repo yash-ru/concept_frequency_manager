@@ -399,7 +399,13 @@ with tab1:
     if uploaded:
         try:
             df = pd.read_csv(uploaded)
-            
+
+            # Remove row 2 if contains "Grand Total"
+            df = df[~df[first_col].astype(str).str.contains("grand total", case=False, na=False)]
+
+            # Remove last row if it contains "(Others)"
+            df = df[~df[first_col].astype(str).str.contains(r"\(others\)", case=False, na=False)]
+
             # Validate columns
             required_cols = ["Keyword Term", "Keyword Impressions", "Keyword Clicks", "Revenue"]
             missing_cols = [col for col in required_cols if col not in df.columns]
