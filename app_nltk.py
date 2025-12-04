@@ -472,6 +472,10 @@ with tab2:
     if uploaded2:
         try:
             df2 = pd.read_csv(uploaded2)
+            first_col = df2.columns[0] 
+
+            df2 = df2[~df2[first_col].astype(str).str.contains("Grand Total", case=False, na=False)]
+            df2 = df2[~df2[first_col].astype(str).str.contains(r"\(others\)", case=False, na=False)]
             
             # Validate columns
             required_cols = ["URL", "Page Impression", "Keyword Clicks", "Revenue"]
